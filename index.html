@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+		<title>移动端表单验证</title>
+		<link rel="stylesheet" href="css/demo.css"/>
+		<link rel="stylesheet" href="css/zValidate.css"/>
+	</head>
+	<body>
+		<form class="validate" method="post">
+			<div class="form-horizontal">
+				<fieldset class="form-group">
+					<div class="controls">
+					    <input class="form-control" type="number" name="number2" data-required="true" data-required-message="请输入数字" placeholder="数字"/>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<div class="controls">
+						<input class="form-control" type="text" name="chinese" data-required="true" data-required-message="请输入姓名" placeholder="姓名"/>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<div class="controls">
+						<input class="form-control" type="text" name="email" data-email="true" data-email-message="请输入正确的邮箱格式" placeholder="邮箱"/>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<div class="controls">
+						<input class="form-control" type="text" name="url" data-url="true" data-url-message="请输入正确的URL格式" placeholder="URL"/>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<div class="controls">
+						<input class="form-control" type="text" name="number" data-number="true" data-number-message="请输入正确的金额格式" placeholder="金额"/>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<div class="controls">
+						<input class="form-control" type="text" name="digits" data-digits="true" data-digits-message="请输入整数" placeholder="整数"/>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<div class="controls">
+						<input class="form-control" type="password" name="pwd" placeholder="密码" id="pwd"/>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<div class="controls">
+						<input class="form-control" type="password" name="confirm" placeholder="确认密码" data-equal-to="#pwd" data-equal-to-message="确认密码与密码不匹配"/>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<div class="controls">
+						<input class="form-control" type="text" name="custom" placeholder="自定义规则" data-custom="true" data-custom-message="自定义规则出错"/>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<div class="controls">
+						<select name="color" data-not-equal="3" data-not-equal-message="请选择颜色">
+							<option value="3">请选择</option>
+							<option value="1">蓝色</option>
+							<option value="2">绿色</option>
+						</select>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<div class="controls">
+						<label><input type="checkbox" name="interest" value="1" data-required="true" data-required-message="请选中兴趣爱好"/>篮球</label>
+						<label><input type="checkbox" name="interest" value="2"/>足球</label>
+					</div>
+				</fieldset>
+				<fieldset class="form-group">
+					<div class="controls">
+						<label><input type="radio" name="gender" value="1"/>男</label>
+						<label><input type="radio" name="gender" value="2"/>女</label>
+					</div>
+				</fieldset>
+			</div>
+			<fieldset>
+				<button type="submit">提交</button>
+			</fieldset>
+		</form>
+		<script src="js/zepto.js"></script>
+		<script src="js/zValidate.js"></script>
+		<script>
+			Zepto(function() {
+				$validate = $('.validate').zValidate();
+				$validate.addMethod('custom', function(value, $element, param) {
+					if(value.length > 0) {
+						return value == 1;
+					}
+					return true;
+				});
+			});
+		</script>
+	</body>
+</html>

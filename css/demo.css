@@ -1,0 +1,130 @@
+html {
+	font-size:100%;
+	-ms-text-size-adjust: 100%;
+  	-webkit-text-size-adjust: 100%;/*关闭字体大小自动调整功能*/
+  	-ms-touch-action: none;/*禁止winphone默认触摸事件*/
+}
+body {
+  	margin:10px;line-height:1.4;color:#333;
+  	font-family:'arial,Helvetica';
+  	-webkit-user-select: none;/*禁止ios和android用户选中文字*/
+  	-webkit-touch-callout: none;/*禁止ios 长按时不触发系统的菜单，禁止ios&android长按时下载图片*/
+  	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);/*去掉ios系统中元素被触摸时产生的半透明灰色遮罩*/
+}
+article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary {display: block;}
+figure,menu{margin:0;padding:0;}
+ul,ol{padding:0; list-style-type:none;}
+h1,h2,h3,h4,h5,h6,p,ul,ol,form,dl,dt,dd,li{margin:0;}
+/* 规范垂直对齐`progress`在Chrome，Firefox，Opera*/
+audio,canvas,progress,video {display: inline-block;vertical-align: baseline;}
+/* 在iOS 5设备去除多余的高度  防止现代浏览器显示`音频`没有控制。 */
+audio:not([controls]) {display: none;height: 0;}
+/* 使`[hidden]`兼容IE 8/9/10 在IE 8/9/10/11, Safari和 Firefox < 22中隐藏`template`标签 */
+[hidden],template {display: none;}
+/* 从IE 10活动链接删除灰色的背景颜色*/
+a {background-color: transparent;text-decoration:none;}
+a:active,a:hover {outline: 0;}
+/* 兼容 IE 8/9/10/11, Safari, and Chrome.*/
+abbr[title] {border-bottom: 1px dotted;}
+/* 兼容 Firefox 4+, Safari, and Chrome.*/
+b,strong {font-weight: bold;}
+/*兼容 IE 8/9.*/
+mark {color: #000;background: #ff0;}
+small {font-size: 80%;}
+/* 兼容 `sub` 和 `sup`,在各个浏览器展现一致*/
+sub,sup {font-size: 75%;line-height: 0;position: relative;vertical-align: baseline;}
+sup {top: -0.5em;}
+sub {bottom: -0.25em;}
+/* 去除 IE 8/9/10中的默认边框*/
+img {border: 0;}
+/* 兼容 IE 9/10/11.*/
+svg:not(:root) {overflow: hidden;}
+/* 让 Firefox 和 其他浏览器保持一致*/
+hr {-webkit-box-sizing: content-box;-moz-box-sizing: content-box;box-sizing: content-box;height: 0;}
+pre {overflow: auto;}
+code,kbd,pre,samp {font-family: monospace, monospace;}
+
+/* 表单控件重置
+   ========================================================================== */
+button,input,optgroup,select,textarea {color: inherit;font: inherit;margin: 0;font-size:100%;outline:0;}
+/* webkit表单输入框placeholder的颜色值*/
+input::-webkit-input-placeholder{color:#666;}
+input:focus::-webkit-input-placeholder{color:#eee;}
+/* android 上去掉语音输入按钮*/
+input::-webkit-input-speech-button {display: none;}
+/* 在 IE 8/9/10/11中默认是 `hidden`*/
+button {overflow: visible;}
+button,select {text-transform: none;}
+/* IE10禁用 select 默认下拉箭头*/
+select::-ms-expand {display: none;}
+/* IE10禁用 radio 和 checkbox 默认样式*/
+input[type=radio]::-ms-check,input[type=checkbox]::-ms-check{display: none;}
+/* IE10禁用PC端表单输入框默认清除按钮*/
+input[type=text]::-ms-clear,input[type=tel]::-ms-clear,input[type=number]::-ms-clear{display: none;}
+button,
+html input[type="button"], /* 1避免 Android 4.0.*破坏audio和video的控制*/
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button; /* 2 IOS中正确点击input控件 */
+}
+/* 去除Firefox 4+默认的样式*/
+button::-moz-focus-inner,input::-moz-focus-inner {padding: 0;border: 0;}
+input {line-height: normal;}
+/**
+ * 1 将IE 8/9/10中的控件设置为content-box
+ * 2 去除IE 8/9/10中多余的padding*/
+ * */
+input[type="checkbox"],input[type="radio"] {box-sizing: border-box;/*1*/padding: 0;/*2*/}
+/* 修复了Chrome的加/减键光标风格*/
+input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button {height: auto;}
+/**
+ * 1 Address `appearance` set to `searchfield` in Safari and Chrome
+ * 2 Address `box-sizing` set to `border-box` in Safari and Chrome
+ */
+input[type="search"] {-webkit-appearance: textfield; /* 1*/box-sizing: content-box; /* 2*/}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration {-webkit-appearance: none;}
+fieldset {border:0;margin: 0;padding: 0;}
+/* Correct `color` not being inherited in IE 8/9/10/11*/
+legend {border: 0; /* 1 */padding: 0;}
+/* 去除IE 8/9/10/11中默认的滚动条*/
+textarea {resize: vertical;overflow: auto;}
+optgroup {font-weight: bold;}
+::-moz-selection {background: #b3d4fc;text-shadow: none;}
+::selection {background: #b3d4fc;text-shadow: none;}
+audio,canvas,iframe,img,svg,video {vertical-align: middle;}
+/* 分割线 更好的展现样式*/
+hr {display:block;height:1px;border-top:1px solid #ccc;margin:1em 0;padding:0;border:0;}
+/* 下外边距10px*/
+p {margin: 0 0 10px;}
+
+/* h1 h2 h3 h4 h5 h6
+   ========================================================================== */
+h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6 {font-family: inherit;font-weight: 500;line-height: 1.1;color: inherit;}
+h1 small,h2 small,h3 small,h4 small,h5 small,h6 small,
+.h1 small,.h2 small,.h3 small,.h4 small,.h5 small,.h6 small,
+h1 .small,h2 .small,h3 .small,h4 .small,h5 .small,h6 .small,
+.h1 .small,.h2 .small,.h3 .small,.h4 .small,.h5 .small,.h6 .small {
+  	font-weight: normal;line-height: 1;color: #777;
+}
+h1 small,.h1 small,h2 small,.h2 small,h3 small,.h3 small,
+h1 .small,.h1 .small,h2 .small,.h2 .small,h3 .small,.h3 .small {
+  	font-size: 65%;
+}
+h4 small,.h4 small,h5 small,.h5 small,h6 small,.h6 small,
+h4 .small,.h4 .small,h5 .small,.h5 .small,h6 .small,.h6 .small {
+  	font-size: 75%;
+}
+h1,.h1,h2,.h2,h3,.h3 {
+  	margin-top: 20px;margin-bottom: 10px;
+}
+h4,.h4,h5,.h5,h6,.h6 {
+  	margin-top: 10px;margin-bottom: 10px;
+}
+h1,.h1 {font-size: 22px;}h2,.h2 {font-size: 20px;}h3,.h3 {font-size: 18px;}
+h4,.h4 {font-size: 16px;}h5,.h5 {font-size: 14px;}h6,.h6 {font-size: 12px;}
+
+section{margin-bottom:30px;}
+a{color:#337ab7;margin-right:20px;}
+pre{background:#666;color:#FFF;padding:0 20px;font-size:14px;}
+pre code{margin:0;}
+fieldset{margin-bottom:10px;}
