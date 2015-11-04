@@ -99,14 +99,14 @@ $('.validate').zValidate();
         <td>{function}</td>
         <td></td>
         <td>设置错误高亮方法<br>
-        如果在这里引用this的话，引用的是当前初始化的zValidate对象</td>
+        这里引用this的话，引用的是当前初始化的zValidate对象</td>
     </tr>
     <tr>
         <td>unhighlight</td>
         <td>{function}</td>
         <td></td>
         <td>取消错误高亮方法<br>
-        如果在这里引用this的话，引用的是当前初始化的zValidate对象</td>
+        这里引用this的话，引用的是当前初始化的zValidate对象</td>
     </tr>
     <tr>
         <td>submit</td>
