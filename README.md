@@ -5,6 +5,7 @@
 - resource中的图片文件就一张二维码图片，仅仅用于扫描
 - css/demo.css文件仅仅是页面布局CSS
 - css/zValidate.css写的是控件和表单的简单样式，可自定义
+- test中index.html对验证规则做了简单的测试，使用的是jasmine测试框架
 - 就200多行代码，对于不符合使用项目的部分，可随意修改
 
 ## 移动端展示
