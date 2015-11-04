@@ -23,7 +23,6 @@
     	errorClass: "error",//错误样式
 		errorElement: "label",//错误标签
 		errorContainer: "",//展示错误信息的容器
-    	ignore: "[type=hidden]",//忽略的元素选择器
     	debug: false, //开启或关闭调试
     	errorPlacement: null,//自定义错误处理$error, $element
     	highlight: function($element) {//高亮 当前作用域是zValidate
@@ -80,8 +79,7 @@
         elements: function() {//获取当前form表单中的标签
 			return this.$currentForm
 				.find("input, select, textarea")
-				.not("[type=submit], [type=reset], image, [disabled], [readonly], button")
-				.not(this.options.ignore);
+				.not("[type=submit], [type=reset], image, [disabled], [readonly], button");
 		},
 		check: function($elements) {//返回false或标签内容数组
 			var isError = false;//判断是否是错误
