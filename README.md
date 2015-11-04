@@ -114,7 +114,7 @@ $('.validate').zValidate();
         <td></td>
         <td>自定义提交逻辑方法<br/>
         可在里面写ajax等方法<br/>
-        如果在这里引用this的话，引用的是当前初始化的zValidate对象</td>
+        这里引用this的话，引用的是当前初始化的zValidate对象</td>
     </tr>
 </tbody>
 </table>
