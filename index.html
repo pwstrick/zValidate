@@ -8,16 +8,138 @@
 		<link rel="stylesheet" href="css/zValidate.css"/>
 	</head>
 	<body>
+		<section>
+			<h3>1、默认初始化</h3>
+			<form id="validate1" method="post">
+				<div class="form-horizontal">
+					<fieldset class="form-group">
+						<div class="controls">
+							<input class="form-control" type="text" name="chinese" data-required="true" data-required-message="请输入姓名" placeholder="姓名"/>
+						</div>
+					</fieldset>
+					<fieldset>
+						<button type="submit">提交</button>
+					</fieldset>
+				</div>
+			</form>
+			<pre>
+				<code>
+$('#validate1').zValidate();</code>
+			</pre>
+		</section>
+		
+		<section>
+			<h3>2、自定义错误位置</h3>
+			<form id="validate2" method="post">
+				<div class="form-horizontal">
+					<fieldset class="form-group">
+						<div class="controls">
+							<input class="form-control" type="text" name="chinese" data-required="true" data-required-message="请输入姓名" placeholder="姓名"/>
+						</div>
+					</fieldset>
+					<fieldset>
+						<button type="submit">提交</button>
+						<div id="error_div"></div>
+					</fieldset>
+				</div>
+			</form>
+			<pre>
+				<code>
+$('#validate2').zValidate({
+	errorContainer: $('#error_div')
+});</code>
+			</pre>
+		</section>
+		
+		<section>
+			<h3>3、自定义高亮</h3>
+			<form id="validate3" method="post">
+				<div class="form-horizontal">
+					<fieldset class="form-group">
+						<div class="controls">
+							<input class="form-control" type="text" name="chinese" data-required="true" data-required-message="请输入姓名" placeholder="姓名"/>
+						</div>
+					</fieldset>
+					<fieldset>
+						<button type="submit">提交</button>
+					</fieldset>
+				</div>
+			</form>
+			<pre>
+				<code>
+$('#validate3').zValidate({
+	highlight: function($element) {
+		//this是当前初始化的zValidate对象
+		$element.closest('.form-group').addClass(this.options.errorClass);
+	},
+	unhighlight: function($element) {
+		$element.closest('.form-group').removeClass(this.options.errorClass);
+	}
+});</code>
+			</pre>
+		</section>
+		
+		<section>
+			<h3>4、自定义错误处理</h3>
+			<form id="validate4" method="post">
+				<div class="form-horizontal">
+					<fieldset class="form-group">
+						<div class="controls">
+							<input class="form-control" type="text" name="chinese" data-required="true" data-required-message="请输入姓名" placeholder="姓名"/>
+						</div>
+					</fieldset>
+					<fieldset>
+						<button type="submit">提交</button>
+					</fieldset>
+				</div>
+			</form>
+			<pre>
+				<code>
+$('#validate4').zValidate({
+	errorPlacement: function($error, $element) {
+		//$error 错误对象
+		//$element 当前控件对象
+		//有些控件美化的时候，会多出很多标签，这个时候就不能简单的放到控件后面了
+		//这里将错误显示在了控件的前面
+		$error.insertBefore($element);
+	}
+});</code>
+			</pre>
+		</section>
+		
+		<section>
+			<h3>5、自定义规则</h3>
+			<form id="validate5" method="post">
+				<div class="form-horizontal">
+					<fieldset class="form-group">
+						<div class="controls">
+							<input class="form-control" type="text" name="custom" placeholder="自定义规则" data-custom="true" data-custom-message="自定义规则出错"/>
+						</div>
+					</fieldset>
+					<fieldset>
+						<button type="submit">提交</button>
+					</fieldset>
+				</div>
+			</form>
+			<pre>
+				<code>
+$validate5 = $('#validate5').zValidate();
+$validate5.addMethod('custom', function(value, $element, param) {
+	//value 当前控件值
+	//$element 当前控件对象
+	//param 当前规则设置的值
+	return value == 1;
+});</code>
+			</pre>
+		</section>
+		
+		<section>
+			<h3>各项规则如下</h3>
 		<form class="validate" method="post">
 			<div class="form-horizontal">
 				<fieldset class="form-group">
 					<div class="controls">
 					    <input class="form-control" type="number" name="number2" data-required="true" data-required-message="请输入数字" placeholder="数字"/>
-					</div>
-				</fieldset>
-				<fieldset class="form-group">
-					<div class="controls">
-						<input class="form-control" type="text" name="chinese" data-required="true" data-required-message="请输入姓名" placeholder="姓名"/>
 					</div>
 				</fieldset>
 				<fieldset class="form-group">
@@ -52,11 +174,6 @@
 				</fieldset>
 				<fieldset class="form-group">
 					<div class="controls">
-						<input class="form-control" type="text" name="custom" placeholder="自定义规则" data-custom="true" data-custom-message="自定义规则出错"/>
-					</div>
-				</fieldset>
-				<fieldset class="form-group">
-					<div class="controls">
 						<select name="color" data-not-equal="3" data-not-equal-message="请选择颜色">
 							<option value="3">请选择</option>
 							<option value="1">蓝色</option>
@@ -76,22 +193,56 @@
 						<label><input type="radio" name="gender" value="2"/>女</label>
 					</div>
 				</fieldset>
+				<fieldset>
+					<button type="submit">提交</button>
+				</fieldset>
 			</div>
-			<fieldset>
-				<button type="submit">提交</button>
-			</fieldset>
 		</form>
+	</section>
 		<script src="js/zepto.js"></script>
 		<script src="js/zValidate.js"></script>
 		<script>
 			Zepto(function() {
-				$validate = $('.validate').zValidate();
-				$validate.addMethod('custom', function(value, $element, param) {
-					if(value.length > 0) {
-						return value == 1;
-					}
-					return true;
+				//1  默认初始化
+				$('#validate1').zValidate();
+				
+				//2 自定义错误位置
+				$('#validate2').zValidate({
+					errorContainer: $('#error_div')
 				});
+				
+				//3 自定义高亮
+				$('#validate3').zValidate({
+					highlight: function($element) {
+						//this是当前初始化的zValidate对象
+						$element.closest('.form-group').addClass(this.options.errorClass);
+					},
+					unhighlight: function($element) {
+						$element.closest('.form-group').removeClass(this.options.errorClass);
+					}
+				});
+				
+				//4 自定义错误处理
+				$('#validate4').zValidate({
+					errorPlacement: function($error, $element) {
+						//$error 错误对象
+						//$element 当前控件对象
+						//有些控件美化的时候，会多出很多标签，这个时候就不能简单的放到控件后面了
+						//这里将错误显示在了控件的前面
+						$error.insertBefore($element);
+					}
+				});
+				
+				//5 自定义规则
+				$validate5 = $('#validate5').zValidate();
+				$validate5.addMethod('custom', function(value, $element, param) {
+					//value 当前控件值
+					//$element 当前控件对象
+					//param 当前规则设置的值
+					return value == 1;
+				});
+				
+				$('.validate').zValidate();
 			});
 		</script>
 	</body>

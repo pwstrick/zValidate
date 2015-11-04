@@ -49,3 +49,6 @@
 .form-horizontal .error{
   color:#a94442;
 }
+.form-horizontal .error .form-control{
+	border-bottom-color:#a94442;
+}

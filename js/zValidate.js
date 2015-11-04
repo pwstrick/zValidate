@@ -26,19 +26,18 @@
     	ignore: "[type=hidden]",//忽略的元素选择器
     	debug: false, //开启或关闭调试
     	errorPlacement: null,//自定义错误处理$error, $element
-    	highlight: function($element) {//高亮
+    	highlight: function($element) {//高亮 当前作用域是zValidate
     		if(zValidate.checkable($element)) {
-    			$element.parent().addClass(this.errorClass);
+    			$element.parent().addClass(this.options.errorClass);
     		}else {
-    			$element.addClass(this.errorClass);
+    			$element.addClass(this.options.errorClass);
     		}
-    		
     	},
     	unhighlight: function($element) {//取消高亮
     		if(zValidate.checkable($element)) {
-    			$element.parent().removeClass(this.errorClass);
+    			$element.parent().removeClass(this.options.errorClass);
     		}else {
-    			$element.removeClass(this.errorClass);
+    			$element.removeClass(this.options.errorClass);
     		}
     	},
     	submit: function($form, params) {//提交逻辑
@@ -64,7 +63,7 @@
         	me.$currentForm.submit(function() {
         		var result = me.check($elements);//检查规则
         		if(result !== false) {
-        			me.options.submit.call(this, me.$currentForm, result);//执行自定义事件
+        			me.options.submit.call(me, me.$currentForm, result);//执行自定义事件
         		}
         		return false;
         	});
@@ -75,7 +74,7 @@
 				$error.hide();
 			});
 			$elements.each(function() {//去除控件的错误样式
-				me.options.unhighlight($(this));
+				me.options.unhighlight.call(me, $(this));
 			});
         },
         elements: function() {//获取当前form表单中的标签
@@ -98,6 +97,7 @@
 	        	}
 	        	var datas = $input[0].dataset;//获取data-*开头的属性
 	        	var val = me.elementValue($input);//获取value
+	        	params[name] = val;//设置要传递的值
 	        	$.each(datas, function(key, rule) {
 	        		if(isError) return isError;
 	        		rule = zValidate.deserializeValue($.trim(rule));//格式化类型
@@ -108,11 +108,10 @@
 	        			if(!success) {
 	        				isError = true;
 	        				message = $input.data(key+'Message');//错误提示
-	        				me.options.highlight($input);//高亮
+	        				me.options.highlight.call(me, $input);//高亮
 	        				me.showLabel(name, $input, message);//显示错误信息
 	        			}
 	        		}
-	        		params[name] = val;
 	        	});
 	        });
 	        if(isError) {//如果是错误
@@ -134,8 +133,8 @@
 			var errorPlacement = this.options.errorPlacement;
 			if(errorContainer.length) {
 				errorContainer.append($error);
-			}else if(errorPlacement) {
-				errorPlacement($error, $element);
+			}else if(errorPlacement && typeof errorPlacement === "function") {
+				errorPlacement.call(this, $error, $element);
 			}else{
 				if(zValidate.checkable($element)) {
 					$element.parent().append($error);
@@ -147,7 +146,7 @@
 		elementValue: function($element) {//获取元素的值 单选或多选返回数组
 	    	var type = $element[0].type;
 			if(zValidate.checkable($element)) {//判断是check or radio
-				return this.checked($element.attr("name"));
+				return this.checked($element.attr("name"), $element[0].type.toLowerCase());
 			}else if(type === "number" && typeof $element[0].validity !== "undefined") {
 				return $element[0].validity.badInput ? false : $element.val();
 			}
@@ -163,14 +162,16 @@
 			this.methods[name] = method;
 			this.rules.push(name);
 		},
-		checked: function(name) {//获取单选框与多选框选中的元素
+		checked: function(name, type) {//获取单选框与多选框选中的元素
 			var vals = [];
 			$('input[name="'+name+'"]').filter(function() {
 				return $(this).attr('checked');
 			}).each(function() {
 				vals.push($(this).val());
 			});
-			return vals;
+			if(type == "radio")//单选框就不要返回数组
+				return vals.length > 0 ? vals[0] : '';
+			return vals;//多选框返回数组
 		},
 		methods: {//验证方法 可自定义扩展
 	    	required: function(value, $element, param) {//必填

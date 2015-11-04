@@ -4,21 +4,6 @@ describe("methods", function() {//验证方法测试
 		this.validate = new zValidate();
 	});
 	
-//	describe("isEmpty", function() {
-//	  	it("undefined", function() {
-//	    	result = zValidate.isEmpty(undefined);
-//	    	expect(result).toBe(true);
-//	  	});
-//	  	it("null", function() {
-//	    	result = zValidate.isEmpty(null);
-//	    	expect(result).toBe(true);
-//	  	});
-//	  	it("[]", function() {
-//	    	result = zValidate.isEmpty([]);
-//	    	expect(result).toBe(true);
-//	  	});
-//	});
-	
 	describe("required", function() {
 		it("0", function() {
 	    	result = this.validate.methods.required(0);
@@ -152,5 +137,84 @@ describe("methods", function() {//验证方法测试
 	    	result = this.validate.methods.rangelength.call(this.validate,'22222', undefined, [2,4]);
 	    	expect(result).toBe(false);
 	  	});
+	});
+	
+	describe("min", function() {
+		it("5", function() {
+	    	result = this.validate.methods.min.call(this.validate, 2, undefined, 5);
+	    	expect(result).toBe(false);
+	  	});
+	  	it("4", function() {
+	    	result = this.validate.methods.min.call(this.validate, 5, undefined, 4);
+	    	expect(result).toBe(true);
+	  	});
+	  	it("22", function() {
+	    	result = this.validate.methods.min.call(this.validate,'22', undefined, 1);
+	    	expect(result).toBe(true);
+	  	});
+	});
+	
+	describe("max", function() {
+		it("5", function() {
+	    	result = this.validate.methods.max.call(this.validate, 2, undefined, 5);
+	    	expect(result).toBe(true);
+	  	});
+	  	it("4", function() {
+	    	result = this.validate.methods.max.call(this.validate, 5, undefined, 4);
+	    	expect(result).toBe(false);
+	  	});
+	  	it("22", function() {
+	    	result = this.validate.methods.max.call(this.validate,'22', undefined, 1);
+	    	expect(result).toBe(false);
+	  	});
+	});
+	
+	describe("range", function() {
+		it("5~10", function() {
+	    	result = this.validate.methods.range.call(this.validate, 2, undefined, [5,10]);
+	    	expect(result).toBe(false);
+	  	});
+	  	it("5~10", function() {
+	    	result = this.validate.methods.range.call(this.validate, 6, undefined, [5,10]);
+	    	expect(result).toBe(true);
+	  	});
+	  	it("5~10", function() {
+	    	result = this.validate.methods.range.call(this.validate,11, undefined, [5,10]);
+	    	expect(result).toBe(false);
+	  	});
+	});
+	
+	describe("notEqual", function() {
+		it("10", function() {
+	    	result = this.validate.methods.notEqual.call(this.validate, 10, undefined, 10);
+	    	expect(result).toBe(false);
+	  	});
+	  	it("字符串10", function() {
+	    	result = this.validate.methods.notEqual.call(this.validate, '10', undefined, 10);
+	    	expect(result).toBe(false);
+	  	});
+	  	it("null", function() {
+	    	result = this.validate.methods.notEqual.call(this.validate, undefined, undefined, null);
+	    	expect(result).toBe(false);
+	  	});
+	  	console.log(undefined == null);//true
+	  	console.log(undefined == false);//false
+	  	console.log(undefined == '');//false
+	  	console.log(undefined == 0);//false
+	  	
+	  	console.log(null == false);//false
+	  	console.log(null == '');//false
+	  	console.log(null == 0);//false
+	  	
+	  	console.log(false == '');//true
+	  	console.log(false == 0);//true
+	  	
+	  	console.log('' == 0);//true
+	  	
+	  	console.log(undefined || 1);//true
+	  	console.log(null || 1);//true
+	  	console.log(false || 1);//true
+	  	console.log('' || 1);//true
+	  	console.log(0 || 1);//true
 	});
 });
