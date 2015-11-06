@@ -1,5 +1,5 @@
 /*!
- * zdialog
+ * zValidate
  * Date: 2015-10-28
  * https://github.com/pwstrick/zValidate
  * author：pwstrick
