@@ -11,7 +11,7 @@
 ## 移动端展示
 ![二维码](http://pwstrick.github.io/zValidate/resource/qrcode.png) 
 
-Demo [http://pwstrick.github.io/zDialog](http://pwstrick.github.io/zValidate)
+Demo [http://pwstrick.github.io/zValidate](http://pwstrick.github.io/zValidate)
 
 ## 开始使用 zValidate
 
